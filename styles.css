@@ -11,8 +11,19 @@
     --header-color : #262626;
     --header-handle-color: #171717;
     --main-font-color: #e4e4e7;
-    --main-bg-color-from: #0A2647;
-    --main-bg-color-to: #2C74B3;
+    --main-bg-color-from: #0f172a;
+    --main-bg-color-to: #1e293b;
+
+    /*
+    temp colors
+     */
+    --superhot: #b91c1c;
+    --prettyhot: #f97316;
+    --warm: #fcd34d;
+    --temperate: #e4e4e7;
+    --cool: #22d3ee;
+    --prettycold: #0891b2;
+    --supercold: #1d4ed8;
 }
 
 body {
@@ -29,7 +40,8 @@ body {
     margin-bottom: 10px;
     overflow: hidden;
     display: flex;
-    gap: 5px;
+    align-items: center;
+
     border-bottom: 10px solid var(--header-handle-color);
 
     position: relative;
@@ -39,13 +51,33 @@ body {
 
 .searchHeader:hover, .searchHeader:focus-within {
     transform: translateY(0px);
+    position: relative;
+}
+
+.logo {
+    font-family: Montserrat;
+    position: absolute;
+    left: 95vw;
+}
+
+.weatherIcon {
+    display: inline;
+    margin-top: -10px;
+    height: 80px;
+    width: 80px;
+}
+
+.tempIcon {
+    display: inline;
+    height: 80px;
+    width: 80px;
 }
 
 .searchCity {
     border-radius: 5px;
     font-size: 1.5rem;
     height: 40px;
-    width: 300px;
+    width: 270px;
     border: none;
     outline: none;
     background: transparent;
@@ -57,6 +89,10 @@ body {
     height: 40px;
     appearance: none;
     background: transparent;
+}
+
+.searchBtn:hover {
+    cursor: pointer;
 }
 
 .info {
@@ -71,4 +107,22 @@ body {
     margin-top: 10px;
     font-size: 5rem;
 }
+
+.weatherInfo {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: start;
+
+    width: 420px;
+}
+
+.tempInfo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 30px;
+    width: 420px;
+}
+
 
