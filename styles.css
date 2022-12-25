@@ -1,0 +1,71 @@
+* {
+    font-family: Bahnschrift;
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+:root {
+    --header-color : #262626;
+    --header-handle-color: #171717;
+    --main-font-color: #e4e4e7;
+    --main-bg-color-from: #0A2647;
+    --main-bg-color-to: #2C74B3;
+}
+
+body {
+    background-image: linear-gradient(var(--main-bg-color-from), var(--main-bg-color-to));
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.searchHeader {
+    height: 50px;
+    padding: 10px;
+    background-color: var(--header-color);
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: flex;
+    gap: 5px;
+    border-bottom: 10px solid var(--header-handle-color);
+
+    position: relative;
+    transform: translateY(-60px);
+    transition: transform 500ms ;
+}
+
+.searchHeader:hover, .searchHeader:focus-within {
+    transform: translateY(0px);
+}
+
+.searchCity {
+    border-radius: 5px;
+    font-size: 1.5rem;
+    height: 40px;
+    width: 400px;
+    border: none;
+    outline: none;
+}
+
+.searchBtn {
+    padding: 5px;
+    border-radius: 5px;
+    height: 40px;
+    appearance: none;
+}
+
+.info {
+    color: var(--main-font-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cityName {
+    margin-top: 10px;
+    font-size: 5rem;
+}
+
