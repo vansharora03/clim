@@ -1,4 +1,5 @@
-import {fetchWeatherData} from "./getClimate";
+import {fetchForecastData, fetchWeatherData} from "./getClimate";
+import {requestGiffer} from "./getGif";
 
 const cityName = document.querySelector('.cityName');
 const temp = document.querySelector('.temp');
@@ -12,14 +13,20 @@ const displayWeatherData = async function (city) {
     const fetchedData = await fetchWeatherData(city);
     cityName.textContent = fetchedData.name;
     temp.textContent = fetchedData.main.temp + " F";
-    feelsLike.textContent = "Feels like: " + fetchedData.main.feels_like + " F";
+    feelsLike.textContent = "Feels like " + fetchedData.main.feels_like + " F";
     weather.textContent = fetchedData.weather[0].main;
+}
+
+const displayForecastData = async function(city) {
+    const fetchedData = await fetchForecastData(city);
     console.log(fetchedData);
 }
 
-displayWeatherData('Augusta');
+displayWeatherData('Augusta, US');
+displayForecastData('Augusta, US')
 
 searchBtn.addEventListener('click', async () => {
+    if(!searchCity.value) {return}
     try {
         await displayWeatherData(searchCity.value ? searchCity.value : 'Augusta, US')
             .catch(e => {
