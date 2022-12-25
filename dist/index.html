@@ -3,10 +3,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Clim Weather</title>
-      <script src="main.js" defer></script>
-		<link rel="stylesheet" href="styles.css">
+		<script defer src="main.js"></script>
+		<link href="styles.css" rel="stylesheet">
 	</head>
 	<body>
-
+		<div class="searchHeader"><label for="searchCity"><input class="searchCity" id="searchCity"
+																 type="search"></label>
+			<button class="searchBtn">Search</button>
+		</div>
+		<div class="info">
+			<h1 class="cityName"></h1>
+			<h2 class="temp"></h2>
+			<h2 class="feelsLike"></h2>
+			<h2 class="weather"></h2>
+		</div>
 	</body>
 </html>
