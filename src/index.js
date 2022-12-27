@@ -5,10 +5,13 @@ const cityName = document.querySelector('.cityName');
 const temp = document.querySelector('.temp');
 const feelsLike = document.querySelector('.feelsLike');
 const searchCity = document.querySelector('.searchCity');
-const searchBtn = document.querySelector('.searchBtn');
 const weather = document.querySelector('.weather');
 const weatherIcon = document.querySelector('.weatherIcon');
-const forecast = document.querySelector('.forecast');
+const time = document.querySelector('time');
+const pressure = document.querySelector(".pressure");
+const windSpeed = document.querySelector(".windSpeed");
+const maxToday = document.querySelector('.maxToday');
+const minToday = document.querySelector('.minToday');
 
 
 /**
@@ -23,6 +26,18 @@ const chooseIcon = function(weatherType) {
         }
         case "clear": {
             weatherIcon.src = "icons/sunnyclear.svg";
+            break;
+        }
+        case "fog": {
+            weatherIcon.src = "icons/fog.svg";
+            break
+        }
+        case "rain": {
+            weatherIcon.src = "icons/rain.svg";
+            break;
+        }
+        case "snow": {
+            weatherIcon.src = "icons/snow.svg";
             break;
         }
     }
@@ -58,29 +73,39 @@ const tempColorify = function(temp, tempType) {
 
 const displayWeatherData = async function (city) {
     const fetchedData = await fetchWeatherData(city);
+
     cityName.textContent = fetchedData.name;
+
     temp.textContent = fetchedData.main.temp + " °F,";
+
     feelsLike.textContent = "feels like " + fetchedData.main.feels_like + " °F";
+
     weather.textContent = fetchedData.weather[0].main;
+
+    const currentDate = new Date(Date.now() + 18000*1000 + fetchedData.timezone*1000);
+    time.textContent = currentDate.toLocaleTimeString();
+
+    pressure.textContent = fetchedData.main.pressure + " hPa"
+
+    windSpeed.textContent = fetchedData.wind.speed + " mph"
+
+    maxToday.textContent = fetchedData.main.temp_max;
+    minToday.textContent = fetchedData.main.temp_min;
+
+
+    console.log(fetchedData);
     chooseIcon(weather.textContent);
     tempColorify(parseInt(fetchedData.main.temp), temp);
     tempColorify(parseInt(fetchedData.main.feels_like), feelsLike);
 }
 
-const displayForecastData = async function(city) {
-    const fetchedData = await fetchForecastData(city);
-    console.log(fetchedData);
-    fetchedData.list.forEach(forecastData => {
-        const date = document.createElement('div');
-        date.textContent = forecastData.dt_txt;
-        forecast.appendChild(date);
-    })
-}
-
 displayWeatherData('Augusta, US');
 //displayForecastData('Augusta, US')
 
-searchBtn.addEventListener('click', async () => {
+searchCity.addEventListener('keyup', async () => {
+    if(event.key !== "Enter") {
+        return;
+    }
     if(!searchCity.value) {return}
     try {
         await displayWeatherData(searchCity.value ? searchCity.value : 'Augusta, US')
