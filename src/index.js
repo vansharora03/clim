@@ -28,9 +28,13 @@ const chooseIcon = function(weatherType) {
             weatherIcon.src = "icons/sunnyclear.svg";
             break;
         }
+        case "mist": {
+            weatherIcon.src = "icons/fog.svg";
+            break;
+        }
         case "fog": {
             weatherIcon.src = "icons/fog.svg";
-            break
+            break;
         }
         case "rain": {
             weatherIcon.src = "icons/rain.svg";
